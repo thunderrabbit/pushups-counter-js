@@ -17,8 +17,11 @@
   <div id="main">
     <h1>You're ready to do pushups!</h1>
 
-    <div class="button">
+    <div class="nose-button">
       <span>nose goes here</span>
+    </div>
+    <div class="save-button">
+      <span>save</span>
     </div>
 
   </div>
@@ -28,6 +31,12 @@
   <script type="text/javascript" src="js/pushups.js"></script>
   <script type="text/javascript" src="js/guid.js"></script>
   <script type="text/javascript">
+    $('.nose-button').click(function() {
+      nosedownCounter.doNosedown();
+    });
+    $('.save-button').click(function() {
+      nosedownCounter.saveNoseDowns();
+    });
   </script>
 </body>
 
