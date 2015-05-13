@@ -1,13 +1,19 @@
+var nosedownCounter = {
+  var myCookieGUID;
+  var cookieName = 'push-up-cookie';
+
+  initialize: function(app_id,js_key) {
     Parse.initialize(config.app_id, config.js_key);
-    
-    var myCookieGUID;
-    var cookieName = 'push-up-cookie';
     if(docCookies.hasItem(cookieName)) {
       myCookieGUID = docCookies.getItem(cookieName);
     } else {
       myCookieGUID = guid();
       docCookies.setItem(cookieName,myCookieGUID);
     }
+  },
+
+
+}
 
     $('.button').click(function() {
       var PushupPerformedBy = Parse.Object.extend("PushupPerformedBy");
