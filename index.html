@@ -43,7 +43,8 @@
   <script type="text/javascript" src="js/guid.js"></script>
   <script type="text/javascript">
     $('.nose-button').click(function() {
-      nosedownCounter.doNosedown();
+      var numNoseDowns = nosedownCounter.doNosedown();
+      $('.so-far').html(numNoseDowns);
     });
     $('.save-button').click(function() {
       nosedownCounter.saveNoseDowns();

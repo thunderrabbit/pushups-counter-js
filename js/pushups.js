@@ -14,6 +14,7 @@ var nosedownCounter = {
   },
   doNoseDown: function() {
     recentNosedowns++;
+    return recentNosedowns;
   },
   getNoseDowns: function() {
     return recentNosedowns;
