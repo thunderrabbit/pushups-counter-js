@@ -1,6 +1,7 @@
 var nosedownCounter = {
   var myCookieGUID;
   var cookieName = 'push-up-cookie';
+  var recentNosedowns;
 
   initialize: function(app_id,js_key) {
     Parse.initialize(config.app_id, config.js_key);
@@ -11,19 +12,22 @@ var nosedownCounter = {
       docCookies.setItem(cookieName,myCookieGUID);
     }
   },
-
-
-}
-
-    $('.button').click(function() {
-      var PushupPerformedBy = Parse.Object.extend("PushupPerformedBy");
-      var myPushupCounts = new PushupPerformedBy();
-      myPushupCounts.save({guid: myCookieGUID, pushup:1}, {
-        success: function(object) {
-          $(".success").show();
-        },
-        error: function(model, error) {
-          $(".error").show();
-        }
-      });
+  doNoseDown: function() {
+    recentNosedowns++;
+  },
+  getNoseDowns: function() {
+    return recentNosedowns;
+  },
+  saveNoseDowns: function() {
+    var PushupsPerformedBy = Parse.Object.extend("PushupsPerformedBy");
+    var myPushupCounts = new PushupsPerformedBy();
+    myPushupCounts.save({guid: myCookieGUID, pushups:recentNosedowns}, {
+      success: function(object) {
+        recentNosedowns = 0;
+      },
+      error: function(model, error) {
+        $(".error").show();
+      }
     });
+  }
+}
