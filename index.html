@@ -42,12 +42,13 @@
   <script type="text/javascript" src="js/pushups.js"></script>
   <script type="text/javascript" src="js/guid.js"></script>
   <script type="text/javascript">
+    nosedownCounter = makeNosedownCounter();
     $('.nose-button').click(function() {
-      var numNoseDowns = nosedownCounter.doNosedown();
-      $('.so-far').html(numNoseDowns);
+      var numNosedowns = nosedownCounter.doNosedown();
+      $('.so-far').html(numNosedowns);
     });
     $('.save-button').click(function() {
-      nosedownCounter.saveNoseDowns();
+      nosedownCounter.saveNosedowns();
     });
   </script>
 </body>
