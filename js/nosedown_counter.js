@@ -30,7 +30,15 @@ $(function() {
     doNosedown: function() {
       this.set({"count": this.get("count") + 1});
       console.log(this.get("count"));
-    }
+    },
+
+    saveNosedowns: function() {
+		this.save({
+			user:    Parse.User.current(),
+			ACL:     new Parse.ACL(Parse.User.current())
+		});
+		this.set({"count" : 0});
+  	}
 
   });
 
@@ -154,6 +162,7 @@ $(function() {
       // "click #clear-completed": "clearCompleted",
       // "click #toggle-all": "toggleAllComplete",
       "click .nose-button": "countNosedown",
+      "click .save-button": "saveNosedowns",
       "click .log-out": "logOut",
       // "click ul#filters a": "selectFilter"
     },
@@ -195,6 +204,10 @@ $(function() {
     countNosedown: function(e) {
     	this.setOfNosedowns.doNosedown();
     },
+    saveNosedowns: function(e) {
+		this.setOfNosedowns.saveNosedowns();
+    },
+
     // Logs out the user and shows the login view
     logOut: function(e) {
       Parse.User.logOut();
