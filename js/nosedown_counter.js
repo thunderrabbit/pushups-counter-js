@@ -29,7 +29,7 @@ $(function() {
     // Toggle the `done` state of this setOfNosedowns item.
     doNosedown: function() {
       this.set({"count": this.get("count") + 1});
-      console.log(this.get("count"));
+      return(this.get("count"));
     },
 
     saveNosedowns: function() {
@@ -202,10 +202,12 @@ $(function() {
     },
 
     countNosedown: function(e) {
-    	this.setOfNosedowns.doNosedown();
+		var noseDownsThisSession = this.setOfNosedowns.doNosedown();
+		$("#this-session-count").html(noseDownsThisSession);
     },
     saveNosedowns: function(e) {
 		this.setOfNosedowns.saveNosedowns();
+		$("#this-session-count").html(0);
 		this.setOfNosedowns = new SetOfNosedowns;
     },
 
