@@ -37,7 +37,7 @@ $(function() {
 			user:    Parse.User.current(),
 			ACL:     new Parse.ACL(Parse.User.current())
 		});
-		this.set({"count" : 0});
+		// this.set({"count" : 0});
   	}
 
   });
@@ -206,6 +206,7 @@ $(function() {
     },
     saveNosedowns: function(e) {
 		this.setOfNosedowns.saveNosedowns();
+		this.setOfNosedowns = new SetOfNosedowns;
     },
 
     // Logs out the user and shows the login view
