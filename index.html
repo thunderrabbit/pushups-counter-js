@@ -8,49 +8,76 @@
   <link rel="stylesheet" href="css/reset.css">
   <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/large-pressable-button.css">
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore.js"></script>
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://www.parsecdn.com/js/parse-1.4.2.min.js"></script>
 </head>
-
 <body>
-  
-  <div id="main">
-    <h1>You're ready to do pushups!</h1>
 
-    <div class="top-message">
-      <ul>
-        <li>Pushups to go:
-          <span class="to-go">0</span>
-        </li>
-        <li>Pushups so far:
-          <span class="so-far">0</span>
-        </li>
-      </ul>
+    <!-- Templates -->
+
+    <script type="text/template" id="login-template">
+      <header id="header"></header>
+      <div class="login">
+        <form class="login-form">
+          <h2>Log In</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="login-username" placeholder="Username" value="team_pushups"/>
+          <input type="password" id="login-password" placeholder="Password" value="team_pushups"/>
+          <button>Log In</button>
+          <div class="note">enter your own deets or just click login to try it out!</div>
+        </form>
+
+        <form class="signup-form">
+          <h2>Sign Up</h2>
+          <div class="error" style="display:none"></div>
+          <input type="text" id="signup-username" placeholder="Username" />
+          <input type="password" id="signup-password" placeholder="Create a Password" />
+          <button>Sign Up</button>
+        </form>
+      </div>
+    </script>
+
+    <script type="text/template" id="manage-todos-template">
+      <div id="user-info">
+        Signed in as <%= Parse.User.current().escape("username") %> (<a href="#" class="log-out">Log out</a>)
+      </div>
+
+      <div class="section">
+        <div id="main">
+          <ul>
+            <li>Pushups this session:
+              <span id="this-session-count">0</span>
+            </li>
+            <li>Pushups so far:
+              <span id="pushups-so-far">0</span>
+            </li>
+          </ul>
+          <div class="button nose-button">
+            <span>nose goes here</span>
+          </div>
+          <div class="button save-button">
+            <span>save</span>
+          </div>
+        </div>
+
+        <div id="todo-stats"></div>
+      </div>
+    </script>
+
+    <div id="nosedown-app">
+    <div class="title">
+      <h1>Pushups Counter</h1>
     </div>
 
-    <div class="button nose-button">
-      <span>nose goes here</span>
+    <div class="content">
     </div>
-    <div class="button save-button">
-      <span>save</span>
-    </div>
-
   </div>
 
   <script type="text/javascript" src="js/config.js"></script>
   <script type="text/javascript" src="js/cookies.js"></script>
-  <script type="text/javascript" src="js/pushups.js"></script>
+  <script type="text/javascript" src="js/nosedown_counter.js"></script>
   <script type="text/javascript" src="js/guid.js"></script>
-  <script type="text/javascript">
-    nosedownCounter = makeNosedownCounter();
-    $('.nose-button').click(function() {
-      var numNosedowns = nosedownCounter.doNosedown();
-      $('.so-far').html(numNosedowns);
-    });
-    $('.save-button').click(function() {
-      nosedownCounter.saveNosedowns();
-    });
-  </script>
 </body>
 
 </html>
