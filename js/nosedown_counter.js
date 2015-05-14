@@ -9,28 +9,29 @@ $(function() {
   // Initialize Parse with your Parse application javascript keys
   Parse.initialize(config.app_id, config.js_key);
 
-  // Todo Model
+  // SetOfNosedowns Model
   // ----------
 
-  // Our basic Todo model has `content`, `order`, and `done` attributes.
-  var Todo = Parse.Object.extend("Todo", {
-    // Default attributes for the todo.
+  // Our basic SetOfNosedowns model has a `count` attribute.
+  var SetOfNosedowns = Parse.Object.extend("SetOfNosedowns", {
+    // Default attributes for the setOfNosedowns.
     defaults: {
-      content: "empty todo...",
-      done: false
+      count: 0
     },
 
-    // Ensure that each todo created has `content`.
+    // Ensure that each setOfNosedowns created has `count`.
     initialize: function() {
-      if (!this.get("content")) {
-        this.set({"content": this.defaults.content});
+      if (!this.get("count")) {
+        this.set({"count": this.defaults.count});
       }
     },
 
-    // Toggle the `done` state of this todo item.
-    toggle: function() {
-      this.save({done: !this.get("done")});
+    // Toggle the `done` state of this setOfNosedowns item.
+    doNosedown: function() {
+      this.set({"count": this.get("count") + 1});
+      console.log(this.get("count"));
     }
+
   });
 
   // This is the transient application state, not persisted on Parse
@@ -152,6 +153,7 @@ $(function() {
       // "keypress #new-todo":  "createOnEnter",
       // "click #clear-completed": "clearCompleted",
       // "click #toggle-all": "toggleAllComplete",
+      "click .nose-button": "countNosedown",
       "click .log-out": "logOut",
       // "click ul#filters a": "selectFilter"
     },
@@ -164,7 +166,7 @@ $(function() {
     initialize: function() {
       var self = this;
 
-      _.bindAll(this, 'logOut');
+      _.bindAll(this, 'countNosedown', 'logOut');
       // _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
 
       // Main todo management template
@@ -174,7 +176,7 @@ $(function() {
     //   this.allCheckbox = this.$("#toggle-all")[0];
 
     //   // Create our collection of Todos
-    //   this.todos = new TodoList;
+      this.setOfNosedowns = new SetOfNosedowns;
 
     //   // Setup the query for the collection to look for todos from the current user
     //   this.todos.query = new Parse.Query(Todo);
@@ -190,6 +192,9 @@ $(function() {
     //   state.on("change", this.filter, this);
     },
 
+    countNosedown: function(e) {
+    	this.setOfNosedowns.doNosedown();
+    },
     // Logs out the user and shows the login view
     logOut: function(e) {
       Parse.User.logOut();
