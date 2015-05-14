@@ -147,27 +147,28 @@ $(function() {
     // // Our template for the line of statistics at the bottom of the app.
     // statsTemplate: _.template($('#stats-template').html()),
 
-    // // Delegated events for creating new items, and clearing completed ones.
-    // events: {
-    //   "keypress #new-todo":  "createOnEnter",
-    //   "click #clear-completed": "clearCompleted",
-    //   "click #toggle-all": "toggleAllComplete",
-    //   "click .log-out": "logOut",
-    //   "click ul#filters a": "selectFilter"
-    // },
+    // Delegated events for creating new items, and clearing completed ones.
+    events: {
+      // "keypress #new-todo":  "createOnEnter",
+      // "click #clear-completed": "clearCompleted",
+      // "click #toggle-all": "toggleAllComplete",
+      "click .log-out": "logOut",
+      // "click ul#filters a": "selectFilter"
+    },
 
-    // el: ".content",
+    el: ".content",
 
-    // // At initialization we bind to the relevant events on the `Todos`
-    // // collection, when items are added or changed. Kick things off by
-    // // loading any preexisting todos that might be saved to Parse.
-    // initialize: function() {
-    //   var self = this;
+    // At initialization we bind to the relevant events on the `Todos`
+    // collection, when items are added or changed. Kick things off by
+    // loading any preexisting todos that might be saved to Parse.
+    initialize: function() {
+      var self = this;
 
-    //   _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
+      _.bindAll(this, 'logOut');
+      // _.bindAll(this, 'addOne', 'addAll', 'addSome', 'render', 'toggleAllComplete', 'logOut', 'createOnEnter');
 
-    //   // Main todo management template
-    //   this.$el.html(_.template($("#manage-todos-template").html()));
+      // Main todo management template
+      this.$el.html(_.template($("#manage-todos-template").html()));
       
     //   this.input = this.$("#new-todo");
     //   this.allCheckbox = this.$("#toggle-all")[0];
@@ -187,15 +188,15 @@ $(function() {
     //   this.todos.fetch();
 
     //   state.on("change", this.filter, this);
-    // },
+    },
 
-    // // Logs out the user and shows the login view
-    // logOut: function(e) {
-    //   Parse.User.logOut();
-    //   new LogInView();
-    //   this.undelegateEvents();
-    //   delete this;
-    // },
+    // Logs out the user and shows the login view
+    logOut: function(e) {
+      Parse.User.logOut();
+      new LogInView();
+      this.undelegateEvents();
+      delete this;
+    },
 
     // // Re-rendering the App just means refreshing the statistics -- the rest
     // // of the app doesn't change.
