@@ -213,14 +213,18 @@ $(function() {
 			$('#pushups-so-far').html(totalNosedowns);
 		});
     },
+
     countNosedown: function(e) {
 		var noseDownsThisSession = this.setOfNosedowns.doNosedown();
 		$("#this-session-count").html("did " + noseDownsThisSession);
     },
     saveNosedowns: function(e) {
-		this.setOfNosedowns.saveNosedowns();
-		$("#this-session-count").html(0);
-		this.setOfNosedowns = new SetOfNosedowns;
+    	me = this;
+		this.setOfNosedowns.saveNosedowns(function(results) {
+			$("#this-session-count").html(0);
+			me.loadTotalNosedowns();
+			me.setOfNosedowns = new SetOfNosedowns;
+		});
     },
 
     // Logs out the user and shows the login view
