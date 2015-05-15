@@ -203,7 +203,7 @@ $(function() {
 
     countNosedown: function(e) {
 		var noseDownsThisSession = this.setOfNosedowns.doNosedown();
-		$("#this-session-count").html(noseDownsThisSession);
+		$("#this-session-count").html("did " + noseDownsThisSession);
     },
     saveNosedowns: function(e) {
 		this.setOfNosedowns.saveNosedowns();
