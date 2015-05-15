@@ -187,7 +187,7 @@ $(function() {
 
     //   // Create our collection of Todos
       this.setOfNosedowns = new SetOfNosedowns;
-
+      this.loadTotalNosedowns();
     //   // Setup the query for the collection to look for todos from the current user
     //   this.todos.query = new Parse.Query(Todo);
     //   this.todos.query.equalTo("user", Parse.User.current());
