@@ -32,12 +32,13 @@ $(function() {
       return(this.get("count"));
     },
 
-    saveNosedowns: function() {
+    saveNosedowns: function(callback) {
 		this.save({
 			user:    Parse.User.current(),
 			ACL:     new Parse.ACL(Parse.User.current())
-		});
-		// this.set({"count" : 0});
+		}).then(callback, function(error) {
+	        alert("error saving");
+	    });
   	}
 
   });
@@ -186,7 +187,7 @@ $(function() {
 
     //   // Create our collection of Todos
       this.setOfNosedowns = new SetOfNosedowns;
-
+      this.loadTotalNosedowns();
     //   // Setup the query for the collection to look for todos from the current user
     //   this.todos.query = new Parse.Query(Todo);
     //   this.todos.query.equalTo("user", Parse.User.current());
@@ -201,14 +202,29 @@ $(function() {
     //   state.on("change", this.filter, this);
     },
 
+    loadTotalNosedowns: function(response) {
+		var query = new Parse.Query(SetOfNosedowns);
+		query.equalTo("user", Parse.User.current());
+		query.find().then(function(results) {
+			var totalNosedowns = 0;
+			for(var i=0; i<results.length; i++) {
+			  totalNosedowns += results[i].get("count");
+			}
+			$('#pushups-so-far').html(totalNosedowns);
+		});
+    },
+
     countNosedown: function(e) {
 		var noseDownsThisSession = this.setOfNosedowns.doNosedown();
-		$("#this-session-count").html(noseDownsThisSession);
+		$("#this-session-count").html("did " + noseDownsThisSession);
     },
     saveNosedowns: function(e) {
-		this.setOfNosedowns.saveNosedowns();
-		$("#this-session-count").html(0);
-		this.setOfNosedowns = new SetOfNosedowns;
+    	me = this;
+		this.setOfNosedowns.saveNosedowns(function(results) {
+			$("#this-session-count").html(0);
+			me.loadTotalNosedowns();
+			me.setOfNosedowns = new SetOfNosedowns;
+		});
     },
 
     // Logs out the user and shows the login view

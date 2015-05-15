@@ -4,7 +4,7 @@ Pushups counter which doesn't limit the number of pushups it counts each month (
 
 ## Demo
 
-http://new.robnugen.com/samples/javascript/pushup-counter-js/
+http://new.robnugen.com/samples/javascript/pushups-counter-js/
 
 ## Credit
 
@@ -14,6 +14,7 @@ http://new.robnugen.com/samples/javascript/pushup-counter-js/
 
 [sentimental version](http://sentimentalversioning.org/) history:
 
+* 15 May 2015: v.Total number of pushups is displayed
 * 14 May 2015: v.Major rewrite based on Parse.Todos
 * 13 May 2015: v.Save pushup batches with a closure!
 * 12 May 2015: v.Saves each pushup
