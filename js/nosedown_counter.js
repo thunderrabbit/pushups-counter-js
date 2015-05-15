@@ -32,11 +32,11 @@ $(function() {
       return(this.get("count"));
     },
 
-    saveNosedowns: function() {
+    saveNosedowns: function(callback) {
 		this.save({
 			user:    Parse.User.current(),
 			ACL:     new Parse.ACL(Parse.User.current())
-		}).then(this.loadTotalNosedowns, function(error) {
+		}).then(callback, function(error) {
 	        alert("error saving");
 	    });
   	}
