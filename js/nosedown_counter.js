@@ -224,32 +224,6 @@ $(function() {
     }
   });
 
-  var AppRouter = Parse.Router.extend({
-    routes: {
-      "all": "all",
-      "active": "active",
-      "completed": "completed"
-    },
-
-    initialize: function(options) {
-    },
-
-    all: function() {
-      state.set({ filter: "all" });
-    },
-
-    active: function() {
-      state.set({ filter: "active" });
-    },
-
-    completed: function() {
-      state.set({ filter: "completed" });
-    }
-  });
-
-  var state = new AppState;
-
-  new AppRouter;
   new AppView;
   Parse.history.start();
 });
