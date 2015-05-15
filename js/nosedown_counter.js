@@ -23,6 +23,7 @@ $(function() {
     initialize: function() {
       if (!this.get("count")) {
         this.set({"count": this.defaults.count});
+        this.loadTotalNosedowns();
       }
     },
 
