@@ -10,6 +10,20 @@ http://new.robnugen.com/samples/javascript/pushups-counter-js/
 
 [Parse](http://www.parse.com) for their backend and sample code
 
+## Todo (maybe)
+
+1. add options screen
+1. add pushups per day goal
+1. countdown per day goal
+1. countup if over goal
+1. different messages if over goal, within today's goal, within prev day's pushups
+1. look at graphing software mike bostocks
+1. add graph pushups per month
+1. add graph pushups per day
+1. add graph for pushups per year
+1. add high score list
+1. add pushups program a la hundredpushups.com
+
 ## Versions
 
 [sentimental version](http://sentimentalversioning.org/) history:
