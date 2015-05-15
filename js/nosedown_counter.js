@@ -36,8 +36,19 @@ $(function() {
 		this.save({
 			user:    Parse.User.current(),
 			ACL:     new Parse.ACL(Parse.User.current())
-		});
-		// this.set({"count" : 0});
+		}).then(function(response) {
+			var query = new Parse.Query(SetOfNosedowns);
+			query.equalTo("user", Parse.User.current());
+			query.find().then(function(results) {
+				var totalNosedowns = 0;
+				for(var i=0; i<results.length; i++) {
+				  totalNosedowns += results[i].get("count");
+				}
+				$('#pushups-so-far').html(totalNosedowns);
+			});
+	    }, function(error) {
+	        alert("error saving");
+	    });
   	}
 
   });
