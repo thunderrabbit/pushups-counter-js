@@ -32,17 +32,6 @@ $(function() {
       return(this.get("count"));
     },
 
-    loadTotalNosedowns: function(response) {
-		var query = new Parse.Query(SetOfNosedowns);
-		query.equalTo("user", Parse.User.current());
-		query.find().then(function(results) {
-			var totalNosedowns = 0;
-			for(var i=0; i<results.length; i++) {
-			  totalNosedowns += results[i].get("count");
-			}
-			$('#pushups-so-far').html(totalNosedowns);
-		});
-    },
     saveNosedowns: function() {
 		this.save({
 			user:    Parse.User.current(),
@@ -213,6 +202,17 @@ $(function() {
     //   state.on("change", this.filter, this);
     },
 
+    loadTotalNosedowns: function(response) {
+		var query = new Parse.Query(SetOfNosedowns);
+		query.equalTo("user", Parse.User.current());
+		query.find().then(function(results) {
+			var totalNosedowns = 0;
+			for(var i=0; i<results.length; i++) {
+			  totalNosedowns += results[i].get("count");
+			}
+			$('#pushups-so-far').html(totalNosedowns);
+		});
+    },
     countNosedown: function(e) {
 		var noseDownsThisSession = this.setOfNosedowns.doNosedown();
 		$("#this-session-count").html("did " + noseDownsThisSession);
