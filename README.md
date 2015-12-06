@@ -4,7 +4,7 @@ Pushups counter which doesn't limit the number of pushups it counts each month (
 
 ## Demo
 
-http://new.robnugen.com/samples/javascript/pushups-counter-js/
+https://new.robnugen.com/samples/javascript/pushups-counter-js/
 
 ## Credit
 
